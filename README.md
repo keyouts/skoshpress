@@ -4,6 +4,8 @@ Skosh Press is a lightweight publishing tool for creating books, zines, pamphlet
 
 The application works locally and does not require an account or internet connection.
 
+![SkoshPress Main View](SkoshPressMainView.png)
+
 ## Features
 
 - **Page Layout:** Create publications with custom page sizes, margins, columns, guides, and rulers.
