@@ -58,7 +58,7 @@ Skosh Press is still in development. Some advanced publishing features, includin
 
 Spellchecking depends on available local dictionaries. PDF output and booklet layouts should be reviewed before professional printing.
 
-Please keep backups of important projects. Automatic crash recovery is not currently available.
+Please keep backups of important projects. Automatic crash recovery is in beta.
 
 ## Development
 
