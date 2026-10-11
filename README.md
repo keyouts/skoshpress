@@ -21,8 +21,6 @@ The application works locally and does not require an account or internet connec
 
 Skosh Press saves editable publications using the `.skoshpress` format.
 
-Older `.tinypress` and `.layoutlist` project files can also be opened.
-
 Supported imports include DOCX, TXT, Markdown text, common image formats, and selected font formats. Google Docs manuscripts can be exported to DOCX before importing.
 
 PDF, booklet PDF, Scribus `.sla`, and RTF export options are available. Interchange exports have limitations and may not preserve every element of a publication.
