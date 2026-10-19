@@ -1,0 +1,75 @@
+{
+  "name": "skosh-press",
+  "productName": "Skosh Press",
+  "version": "0.7.9",
+  "description": "A publishing application.",
+  "main": "main.js",
+  "type": "commonjs",
+  "private": true,
+  "license": "GPL-3.0-only",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron .",
+    "test": "node --test test/*.test.js",
+    "build:win": "electron-builder --win nsis",
+    "build:linux": "electron-builder --linux AppImage",
+    "audit:dependencies": "npm audit --package-lock-only --audit-level=low",
+    "test:security": "node --test test/security-config.test.js test/security-boundaries.test.js test/production-ipc.test.js",
+    "build": "electron-builder --win nsis"
+  },
+  "devDependencies": {
+    "electron": "42.11.11",
+    "electron-builder": "26.15.7"
+  },
+  "build": {
+    "appId": "app.skoshpress.genealogy",
+    "productName": "Skosh Press",
+    "files": [
+      "main.js",
+      "preload.js",
+      "lib/**/*",
+      "src/**/*",
+      "assets/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico",
+      "artifactName": "Skosh-Press-Setup-${version}.${ext}"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "assets/icon-512.png"
+    },
+    "asar": true,
+    "electronFuses": {
+      "runAsNode": false,
+      "enableCookieEncryption": true,
+      "enableNodeOptionsEnvironmentVariable": false,
+      "enableNodeCliInspectArguments": false,
+      "enableEmbeddedAsarIntegrityValidation": true,
+      "onlyLoadAppFromAsar": true,
+      "grantFileProtocolExtraPrivileges": false
+    },
+    "nsis": {
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": true,
+      "shortcutName": "Skosh Press",
+      "oneClick": false,
+      "runAfterFinish": true,
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": false
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "assets/icon-512.png"
+    }
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "author": "KeyOuts"
+}

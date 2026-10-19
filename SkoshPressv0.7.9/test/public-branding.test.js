@@ -1,0 +1,34 @@
+'use strict';
+const test=require('node:test');
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+const root=path.resolve(__dirname,'..');
+const read=name=>fs.readFileSync(path.join(root,name),'utf8');
+test('public application has a stable independent identity',()=>{
+ const pkg=JSON.parse(read('package.json'));
+ const lock=JSON.parse(read('package-lock.json'));
+ assert.equal(pkg.name,'skosh-press');
+ assert.equal(pkg.productName,'Skosh Press');
+ assert.equal(pkg.version,'0.7.9');
+ assert.equal(pkg.license,'GPL-3.0-only');
+ assert.equal(pkg.build.appId,'app.skoshpress.genealogy');
+ assert.equal(pkg.build.nsis.shortcutName,'Skosh Press');
+ assert.equal(lock.name,pkg.name);
+ assert.equal(lock.packages[''].version,pkg.version);
+ assert.match(read('main.js'),/setAppUserModelId\('app\.skoshpress\.genealogy'\)/);
+ assert.match(read('main.js'),/appData'\),'Skosh Press Genealogy'/);
+});
+test('public controls do not display preview labels and retain nonvisual accessibility',()=>{
+ const html=read('src/index.html');
+ const native=read('main.js');
+ const editor=read('src/app.js');
+ for(const content of [html,native,editor]) assert.doesNotMatch(content,/developer edition|genealogy lab\s*·\s*dev|genealogy\.dev|rebuild and restart the developer edition/i);
+ assert.match(html,/<title>Skosh Press<\/title>/);
+ assert.match(html,/aria-labelledby="genealogy-title"/);
+ assert.match(html,/aria-live="polite"/);
+ assert.match(html,/id="publication-export-status"/);
+ assert.match(native,/Genealogy Studio…/);
+ assert.match(native,/title:'Skosh Press'/);
+ assert.ok(native.indexOf("app.setPath('userData',genealogyUserData)")<native.indexOf('app.whenReady().then('));
+});
