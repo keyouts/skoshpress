@@ -1,0 +1,9 @@
+'use strict';
+const test=require('node:test');const assert=require('node:assert/strict');
+const {valid,plan,pairs,defaults}=require('../lib/print-lab');
+const book=n=>({paper:{width:139.7,height:215.9},pages:Array.from({length:n},()=>({frames:[]}))});
+test('booklet imposition puts outer pages on first sheet',()=>{assert.deepEqual(pairs(8),[{sheet:1,front:[8,1],back:[2,7]},{sheet:2,front:[6,3],back:[4,5]}]);});
+test('booklet plan pads blanks, counts sheets and material costs',()=>{const p=plan(book(5),{...defaults,copies:10});assert.equal(p.blankPages,3);assert.equal(p.sheetsPerCopy,2);assert.equal(p.totalSheets,20);assert.equal(p.totalPrintedSides,40);assert.ok(Math.abs(p.costPerCopy-(2*.08+4*.035+.025))<1e-9);assert.equal(p.pairings.length,2);assert.ok(p.warnings.some(x=>x.includes('blank')));});
+test('loose pages support simplex and duplex profiles',()=>{const a=plan(book(5),{...defaults,binding:'loose',duplex:'none',copies:2});const b=plan(book(5),{...defaults,binding:'loose',duplex:'long',copies:2});assert.equal(a.totalSheets,10);assert.equal(b.totalSheets,6);assert.equal(b.totalPrintedSides,10);});
+test('sheet suitability checks available printable area and rotation',()=>{const fit=plan(book(4),{...defaults,margin:0});assert.equal(fit.physicalFit,true);const small=plan(book(4),{...defaults,sheetWidth:210,sheetHeight:297,margin:15});assert.equal(small.physicalFit,false);assert.ok(small.warnings.some(x=>x.includes('100%')));});
+test('profile validation rejects bad values and unwanted keys',()=>{assert.throws(()=>valid({...defaults,copies:0}),/Copies/);assert.throws(()=>valid({...defaults,binding:'other'}),/Invalid printing options/);assert.throws(()=>valid({...defaults,margin:100}),/Invalid margin/);assert.deepEqual(Object.keys(valid({...defaults,path:'/etc/passwd'})).sort(),Object.keys(defaults).sort());});

@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; script-src-attr 'none'; style-src 'self'; style-src-attr 'none'; img-src 'self' data:; font-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; worker-src 'none'; media-src 'none'; manifest-src 'none'">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Skosh Press</title>
+  <link rel="icon" href="../assets/icon-32.png" type="image/png">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="../lib/booklet.js"></script>
+  <script defer src="../lib/units.js"></script>
+  <script defer src="../lib/revisions.js"></script>
+  <script defer src="../lib/story-flow.js"></script>
+  <script defer src="../lib/layout-enhancements.js"></script>
+  <script defer src="../lib/pixel-font.js"></script>
+  <script defer src="../lib/spacing-studio.js"></script>
+  <script defer src="../lib/vector-font.js"></script>
+  <script defer src="../lib/svg-glyph.js"></script>
+  <script defer src="../lib/type-workspace.js"></script>
+  <script defer src="../lib/toolbar-customization.js"></script>
+  <script defer src="../lib/glyph-tools.js"></script>
+  <script defer src="../lib/outline-operations.js"></script>
+  <script defer src="../lib/font-variations.js"></script>
+  <script defer src="../lib/glyph-components.js"></script>
+  <script defer src="../lib/master-compatibility.js"></script>
+  <script defer src="../lib/font-integrity.js"></script>
+  <script defer src="../lib/type-specimen.js"></script>
+  <script defer src="../lib/print-lab.js"></script>
+  <script defer src="../lib/preflight.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#canvas-scroll">Skip to publication canvas</a>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-group"><div><h1>SKOSH PRESS</h1></div></div>
+      <div class="top-document"><label for="doc-name">PROJECT</label><input id="doc-name" aria-label="Project name" spellcheck="false" value="A Skosh Press Project"><span id="dirty-indicator" role="status" aria-label="Unsaved changes" aria-live="off">●</span><span id="selection-announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></span><span id="save-state" class="sr-only" role="status" aria-live="polite" aria-atomic="true">All changes saved.</span></div>
+      <div class="top-actions" role="group" aria-label="Project controls">
+        <button id="new-btn" aria-keyshortcuts="Control+N Meta+N" title="New project (Ctrl+N)">New</button>
+        <button id="open-btn" aria-keyshortcuts="Control+O Meta+O" title="Open a .skoshpress or legacy project (Ctrl+O)">Open</button>
+        <button id="save-btn" aria-keyshortcuts="Control+S Meta+S" class="btn-ink" title="Save project (Ctrl+S)" aria-label="Save current project">↧ Save</button>
+        <details id="project-more" class="project-more"><summary>More ▾</summary><div class="project-more-menu" role="group" aria-label="More project options">
+          <button id="templates-btn" aria-haspopup="dialog" aria-controls="templates-dialog" title="Open reusable layouts and save your own templates" aria-label="Open layout templates">▤ Templates</button>
+          <button id="save-as-btn" aria-keyshortcuts="Control+Shift+S Meta+Shift+S" title="Save project as a new .skoshpress file (Ctrl+Shift+S)">Save As…</button>
+          <button id="theme-btn" title="Toggle application theme" aria-label="Dark mode" aria-pressed="false">◐ Theme</button>
+          <button id="settings-btn" aria-haspopup="dialog" aria-controls="settings-dialog" aria-label="Open accessibility and application settings" title="Settings and accessibility (Ctrl+,)">⚙ Settings</button>
+        </div></details>
+      </div>
+    </header>
+    <div class="ribbon ribbon-organized" role="region" aria-label="Editor tools">
+      <div class="ribbon-tabbar" role="tablist" aria-label="Tool categories">
+        <button type="button" class="ribbon-tab" id="ribbon-tab-create" role="tab" aria-selected="true" aria-controls="ribbon-panel-create" tabindex="0" data-ribbon-tab="create" aria-label="Create tools">＋ Create</button>
+        <button type="button" class="ribbon-tab" id="ribbon-tab-edit" role="tab" aria-selected="false" aria-controls="ribbon-panel-edit" tabindex="-1" data-ribbon-tab="edit" aria-label="Editing tools">✎ Edit</button>
+        <button type="button" class="ribbon-tab" id="ribbon-tab-pages" role="tab" aria-selected="false" aria-controls="ribbon-panel-pages" tabindex="-1" data-ribbon-tab="pages" aria-label="Page tools">▤ Pages</button>
+        <button type="button" class="ribbon-tab" id="ribbon-tab-output" role="tab" aria-selected="false" aria-controls="ribbon-panel-output" tabindex="-1" data-ribbon-tab="output" aria-label="Export tools">↗ Output</button>
+      <div class="favorite-toolbar" role="group" aria-label="Pinned editor commands">
+        <span class="favorite-label">★ QUICK TOOLS</span>
+        <div id="pinned-tool-list" class="pinned-tool-list" role="group" aria-label="Customizable quick commands"></div>
+        <button type="button" id="toolbar-customize-btn" class="toolbar-customize-btn" aria-haspopup="dialog" aria-controls="toolbar-customize-dialog" title="Choose and reorder pinned commands" aria-label="Customize quick tools">⚙ Customize…</button>
+      </div>
+      </div>
+      <div class="ribbon-content">
+        <div class="ribbon-panel" id="ribbon-panel-create" role="tabpanel" aria-labelledby="ribbon-tab-create" data-ribbon-panel="create">
+          <div class="ribbon-group" role="group" aria-label="Add to publication"><span class="ribbon-label">ADD</span><button id="text-btn" aria-label="Text frame: add new text frame">T+ Text frame</button><button id="image-btn" aria-label="Place image in publication">▧ Place image</button><button id="import-btn" aria-label="Import DOCX or TXT manuscript">↥ Import manuscript</button></div>
+          <div class="ribbon-group" role="group" aria-label="Specialized studios"><span class="ribbon-label">STUDIOS</span><button id="genealogy-btn" type="button" aria-label="Open Genealogy Studio" aria-haspopup="dialog" aria-controls="genealogy-dialog" title="Import Ancestry GEDCOM research and lay out a local manuscript">♧ Genealogy</button><button type="button" id="typography-studio-btn" aria-haspopup="dialog" aria-controls="typography-studio-dialog" title="Design editable Bézier vector typefaces and export TrueType fonts" aria-label="Open Typography Studio">✎ Typography</button></div>
+        </div>
+        <div class="ribbon-panel" id="ribbon-panel-edit" role="tabpanel" aria-labelledby="ribbon-tab-edit" data-ribbon-panel="edit" hidden>
+          <div class="ribbon-group" role="group" aria-label="Editing and review"><span class="ribbon-label">EDIT &amp; REVIEW</span><button id="find-btn" aria-haspopup="dialog" aria-controls="find-dialog" aria-keyshortcuts="Control+F Meta+F" title="Find and replace (Ctrl+F)" aria-label="Find and replace text">⌕ Find &amp; Replace</button><button id="revisions-btn" type="button" aria-label="Open revision comparison" aria-haspopup="dialog" aria-controls="revisions-dialog">⇄ Revisions</button><button id="preflight-btn" type="button" aria-haspopup="dialog" aria-controls="preflight-dialog" aria-keyshortcuts="Control+Shift+P Meta+Shift+P" aria-label="Check publication before export">✓ Check document</button><button id="focus-mode-btn" type="button" aria-label="Distraction-free focus view" aria-pressed="false" aria-controls="pages-stage" aria-keyshortcuts="Control+Shift+L Meta+Shift+L">◫ Focus</button></div>
+        </div>
+        <div class="ribbon-panel" id="ribbon-panel-pages" role="tabpanel" aria-labelledby="ribbon-tab-pages" data-ribbon-panel="pages" hidden>
+          <div class="ribbon-group" role="group" aria-label="Page tools"><span class="ribbon-label">PAGES &amp; VIEW</span><button id="add-page-btn" aria-label="Add a publication page">＋ Page</button><div class="view-controls" role="group" aria-label="Page display mode"><button id="single-view-btn" aria-controls="pages-stage" aria-pressed="true" title="Show one page" aria-label="Show single-page view">▢ Single</button><button id="spread-btn" aria-controls="pages-stage" aria-pressed="false" title="Show facing pages" aria-label="Show facing-page view">▣ Spreads</button><button id="all-pages-btn" aria-controls="pages-stage" aria-pressed="false" title="Scroll horizontally through all pages" aria-label="Show all pages view">▤ All pages</button></div><button id="rulers-btn" type="button" aria-pressed="true" aria-controls="pages-stage" aria-label="Hide page rulers">▥ Rulers</button></div>
+        </div>
+        <div class="ribbon-panel" id="ribbon-panel-output" role="tabpanel" aria-labelledby="ribbon-tab-output" data-ribbon-panel="output" hidden>
+          <div class="ribbon-group ribbon-export" role="group" aria-label="Export and print"><span class="ribbon-label">EXPORT</span><button id="pdf-btn" class="btn-yellow" aria-label="Export publication to PDF">Export PDF ↗</button><button id="booklet-btn" class="btn-yellow" aria-label="Export saddle-stitch booklet PDF">Booklet ↗</button><button id="interchange-btn" type="button" aria-haspopup="dialog" aria-controls="interchange-dialog" aria-label="Open publication export formats">⇄ More formats</button><button id="print-lab-btn" type="button" aria-label="Open Print Studio" aria-haspopup="dialog" aria-controls="print-lab-dialog">▤ Print Studio</button></div>
+        </div>
+        <div class="ribbon-group ribbon-zoom" role="group" aria-label="Page zoom"><button id="zoom-out-btn" aria-label="Zoom out">−</button><output id="zoom-label" class="zoom-label" aria-label="Zoom level">80%</output><button id="zoom-in-btn" aria-label="Zoom in">+</button><button id="fit-btn" aria-label="Fit page to view">Fit</button></div>
+      </div>
+    </div>
+    <main class="workspace">
+      <aside class="sidebar left-sidebar" aria-label="Document pages and layers">
+        <div class="panel-heading"><h2>PAGES</h2><span id="page-count" class="counter">01</span></div>
+        <p class="panel-hint">Click a page to edit. Drag text by its handle.</p>
+        <div id="page-list" class="page-list" role="navigation" aria-label="Pages" aria-describedby="page-nav-help"></div><p id="page-nav-help" class="sr-only">Use the page buttons to select a publication page.</p>
+        <button class="sidebar-add" id="sidebar-add-page" aria-label="Add publication page">＋ ADD PAGE</button>
+        <div class="panel-divider"></div>
+        <div class="panel-heading"><h2>OBJECTS</h2><span class="counter">↕</span></div>
+        <div id="layers-list" class="layers-list" role="group" aria-label="Objects on selected page"><span class="empty-note">No objects on this page</span></div>
+        <div class="panel-spacer left-panel-spacer"></div>
+        <div class="shortcuts"><div class="shortcut-title">QUICK KEYS</div><div><kbd>Del</kbd> Remove object</div><div><kbd>Ctrl</kbd> + <kbd>S</kbd> Save project</div><div><kbd>Esc</kbd> Deselect</div></div>
+      </aside>
+      <section class="stage" aria-label="Publication canvas">
+        <div class="stage-meta"><div><span class="stage-dot" aria-hidden="true"></span><span id="stage-title">A5 / PORTRAIT</span><span class="meta-separator" aria-hidden="true">/</span><span id="stage-page-meta">PAGE 1 OF 3</span></div><span id="stage-mode">EDITING VIEW</span></div>
+        <div id="focus-tools" class="focus-tools" role="toolbar" aria-label="Focus view quick tools" aria-describedby="focus-tools-help" hidden>
+          <span class="focus-tools-title" aria-hidden="true">TOOLS</span>
+          <div class="focus-tools-group" role="group" aria-label="Add objects and pages">
+            <button id="focus-add-text" type="button" title="Add a text frame" aria-label="Add text frame in focus view">＋ Text</button>
+            <button id="focus-add-image" type="button" title="Place an image" aria-label="Place image in focus view">▧ Image</button>
+            <button id="focus-add-page" type="button" title="Add a page after this page" aria-label="Add page in focus view">＋ Page</button>
+            <button id="focus-duplicate" type="button" title="Duplicate the selected frame" disabled aria-label="Duplicate selected frame in focus view">▣ Duplicate</button>
+          </div>
+          <div class="focus-tools-group focus-page-tools" role="group" aria-label="Page navigation">
+            <button id="focus-previous-page" type="button" aria-label="Previous page" title="Previous page">←</button>
+            <output id="focus-page-position" aria-live="polite" aria-atomic="true">Page 1 / 3</output>
+            <button id="focus-next-page" type="button" aria-label="Next page" title="Next page">→</button>
+          </div>
+          <div class="focus-tools-group focus-zoom-tools" role="group" aria-label="Zoom controls">
+            <button id="focus-zoom-out" type="button" aria-label="Zoom out">−</button>
+            <output id="focus-zoom-value" aria-live="off">80%</output>
+            <button id="focus-zoom-in" type="button" aria-label="Zoom in">＋</button>
+          </div>
+          <button id="focus-exit" type="button" class="focus-exit" aria-keyshortcuts="Control+Shift+L Meta+Shift+L" title="Return to the full editor (Ctrl+Shift+L)">Exit focus</button>
+          <p id="focus-tools-help" class="sr-only">Use Tab to move between tools, or Left and Right arrow keys to move within this toolbar. Press Control Shift L to return to the full editor.</p>
+        </div>
+        <p id="frame-editor-help" class="sr-only">Press Enter or F2 to edit this text frame. Use arrow keys to move it, Delete or Backspace to remove it, and inspector fields to change its size.</p><p id="frame-image-help" class="sr-only">Use arrow keys to move the selected image frame, Delete or Backspace to remove it, and inspector fields to change its size.</p><div id="canvas-scroll" class="canvas-scroll" role="region" tabindex="0" aria-keyshortcuts="Delete Backspace" aria-label="Publication pages; scroll horizontally in All pages mode" aria-describedby="canvas-help"><p id="canvas-help" class="sr-only">Tab through frames to select them. Use Delete or Backspace to remove the selected frame while working on the canvas. Page selection is also available in the Pages sidebar.</p><div id="pages-stage" class="pages-stage" role="group" aria-label="Editable pages"></div></div>
+        <div id="coordinate-hud" class="coordinate-hud" role="status" aria-live="off" hidden><strong id="coordinate-hud-title">OBJECT POSITION</strong><span id="coordinate-hud-value">X 0 · Y 0</span></div>
+        <div class="stage-foot"><span>PRINT SURFACE <span class="footer-bullet" aria-hidden="true">●</span> <span id="unit-footer">MM</span></span><span id="page-dims">148 × 210 mm</span></div>
+      </section>
+      <aside class="sidebar right-sidebar" aria-label="Inspector">
+        <div class="panel-heading"><h2>INSPECTOR</h2><span id="inspector-context" class="counter">PAGE</span></div>
+        <div class="inspector-tabs" role="tablist" aria-label="Inspector sections" aria-orientation="horizontal"><button id="tab-object" role="tab" aria-controls="inspector-object" aria-selected="true" class="active">OBJECT</button><button id="tab-document" role="tab" aria-controls="inspector-document" aria-selected="false">DOCUMENT</button><button id="tab-fonts" role="tab" aria-controls="inspector-fonts" aria-selected="false">FONTS</button></div>
+        <div id="inspector-object" role="tabpanel" aria-labelledby="tab-object">
+          <div id="no-selection" class="no-selection"><div class="selection-graphic" aria-hidden="true">↖</div><h3>SELECT A FRAME</h3><p>Place text or an image, then adjust it here.</p></div>
+          <div id="frame-inspector" hidden>
+            <div class="inspector-subtitle" id="frame-kind">TEXT FRAME</div>
+            <label for="frame-label">NAME</label><input type="text" id="frame-label" maxlength="80">
+            <div class="input-grid"><div><label for="frame-x">X / <span class="unit-label">MM</span></label><input id="frame-x" type="number" min="0" step="0.5"></div><div><label for="frame-y">Y / <span class="unit-label">MM</span></label><input id="frame-y" type="number" min="0" step="0.5"></div><div><label for="frame-w">WIDTH / <span class="unit-label">MM</span></label><input id="frame-w" type="number" min="8" step="0.5"></div><div><label for="frame-h">HEIGHT / <span class="unit-label">MM</span></label><input id="frame-h" type="number" min="8" step="0.5"></div></div>
+            <div id="text-inspector">
+              <div class="panel-divider"></div><div class="inspector-subtitle">TYPOGRAPHY</div>
+              <label for="frame-font">FONT FAMILY</label><select id="frame-font"><option value="Georgia, serif">Georgia</option><option value="'Times New Roman', serif">Times New Roman</option><option value="Arial, sans-serif">Arial</option><option value="'Trebuchet MS', sans-serif">Trebuchet MS</option><option value="'Courier New', monospace">Courier New</option></select>
+              <div class="input-grid"><div><label for="frame-size">SIZE / PT</label><input id="frame-size" type="number" min="6" max="150" step="1"></div><div><label for="frame-leading">LINE HEIGHT</label><input id="frame-leading" type="number" min="0.8" max="3" step="0.05"></div></div>
+              <label for="text-style-select">REUSABLE TEXT STYLE</label><select id="text-style-select"><option value="">Unlinked formatting</option></select>
+              <label for="text-style-name">STYLE NAME</label><input id="text-style-name" maxlength="64" placeholder="e.g. Chapter heading">
+              <div class="studio-button-row"><button type="button" id="text-style-new">＋ Create &amp; apply</button><button type="button" id="text-style-update">Update style</button><button type="button" id="text-style-remove">Delete style</button></div>
+              <p class="panel-hint">Changing a named style updates every linked frame. Select Unlinked formatting first to customize just one frame.</p>
+              <div class="input-grid"><div><label for="frame-align">ALIGNMENT</label><select id="frame-align"><option value="left">Left</option><option value="center">Center</option><option value="right">Right</option><option value="justify">Justify</option></select></div><div><label for="frame-tracking">TRACKING / PX</label><input id="frame-tracking" type="number" min="-3" max="12" step="0.1"></div><div><label for="frame-indent">FIRST LINE / MM</label><input id="frame-indent" type="number" min="0" max="40" step="0.5"></div><label class="check-label"><input id="frame-hyphenate" type="checkbox"> Hyphenate</label></div>
+              <div class="format-buttons" role="group" aria-label="Text formatting"><button data-format="bold" aria-label="Bold selected text" title="Bold selected text"><strong>B</strong></button><button data-format="italic" aria-label="Italic selected text" title="Italic selected text"><em>I</em></button><button data-format="underline" aria-label="Underline selected text" title="Underline selected text"><u>U</u></button></div>
+              <label for="paragraph-style">PARAGRAPH STYLE</label><select id="paragraph-style"><option value="p">Body text</option><option value="h1">Heading 1</option><option value="h2">Heading 2</option><option value="h3">Heading 3</option></select>
+              <button id="reflow-btn" class="full-btn" aria-describedby="reflow-help">↳ Flow / refresh text</button>
+              <p class="panel-hint" id="reflow-help">Double-click text to edit. For linked manuscripts, use Enter or F2 to edit the entire story before reflowing.</p>
+            </div>
+            <div id="image-inspector" hidden><div class="panel-divider"></div><label for="image-fit">IMAGE FIT</label><select id="image-fit"><option value="cover">Crop to fill</option><option value="contain">Contain image</option></select><label for="image-alt">ALTERNATIVE TEXT</label><textarea id="image-alt" rows="3" maxlength="500" aria-describedby="image-alt-help" placeholder="Describe the meaningful content of the image…"></textarea><p id="image-alt-help" class="panel-hint">Used in accessible HTML and EPUB exports. Leave blank only for an image marked decorative.</p><label class="check-label"><input id="image-decorative" type="checkbox" aria-controls="image-alt"> Decorative image (no description needed)</label></div>
+            <div class="panel-divider"></div><div class="inspector-subtitle">ALIGN TO PAGE</div><div class="alignment-tools" role="group" aria-label="Align selected frame within the page"><button type="button" data-align="left" aria-label="Align frame to left page margin">Left</button><button type="button" data-align="center" aria-label="Center frame horizontally">Center</button><button type="button" data-align="right" aria-label="Align frame to right page margin">Right</button><button type="button" data-align="top" aria-label="Align frame to top page margin">Top</button><button type="button" data-align="middle" aria-label="Center frame vertically">Middle</button><button type="button" data-align="bottom" aria-label="Align frame to bottom page margin">Bottom</button></div><div class="panel-divider"></div><div class="inspector-subtitle">EDITORIAL NOTE</div><label for="frame-note">NOTE ON THIS OBJECT (NOT PRINTED)</label><textarea id="frame-note" rows="4" maxlength="2000" aria-label="Private editing note for this object" placeholder="Copyediting notes, corrections, or layout reminders…"></textarea><div class="frame-actions"><button id="duplicate-btn">Duplicate</button><button id="delete-btn" class="btn-danger" aria-label="Delete selected frame">Delete</button></div>
+          </div>
+        </div>
+        <div id="inspector-document" role="tabpanel" aria-labelledby="tab-document" hidden>
+          <div class="inspector-subtitle">PAPER &amp; GUIDES</div>
+          <label for="page-preset">PAGE SIZE</label><select id="page-preset"><option value="a5">A5 — 148 × 210 mm</option><option value="a4">A4 — 210 × 297 mm</option><option value="letter">US Letter — 216 × 279 mm</option><option value="half-letter">Half Letter — 140 × 216 mm</option><option value="square">Square — 200 × 200 mm</option><option value="custom">Custom size</option></select>
+          <div class="input-grid"><div><label for="page-width">WIDTH / <span class="unit-label">MM</span></label><input id="page-width" type="number" min="50" max="1000" step="1"></div><div><label for="page-height">HEIGHT / <span class="unit-label">MM</span></label><input id="page-height" type="number" min="50" max="1000" step="1"></div></div>
+          <label for="page-margin">GUIDE MARGIN / <span class="unit-label">MM</span></label><input id="page-margin" type="number" min="0" max="100" step="1">
+          <div class="panel-divider"></div><div class="inspector-subtitle">PUBLICATION DETAILS</div><p class="panel-hint" id="metadata-help">Saved with this project. Used for accessible digital exports and publishing handoffs.</p><label for="metadata-author">AUTHOR / CREATOR</label><input id="metadata-author" maxlength="160" aria-describedby="metadata-help" placeholder="Creator name"><label for="metadata-language">PUBLICATION LANGUAGE</label><select id="metadata-language" aria-describedby="metadata-help"><option value="en">English</option><option value="en-GB">English (UK)</option><option value="es">Spanish</option><option value="fr">French</option><option value="de">German</option><option value="it">Italian</option><option value="pt">Portuguese</option><option value="nl">Dutch</option><option value="ja">Japanese</option><option value="zh">Chinese</option><option value="other">Other language</option></select><div id="metadata-language-custom" hidden><label for="metadata-language-tag">LANGUAGE TAG</label><input id="metadata-language-tag" maxlength="35" placeholder="e.g. en-US" aria-describedby="metadata-help"></div><label for="metadata-description">BACK-COVER DESCRIPTION</label><textarea id="metadata-description" rows="3" maxlength="1000" placeholder="A short summary for readers and catalogs"></textarea><label for="metadata-publisher">PUBLISHER / IMPRINT</label><input id="metadata-publisher" maxlength="160" placeholder="Optional publishing imprint"><label for="metadata-rights">COPYRIGHT / RIGHTS STATEMENT</label><input id="metadata-rights" maxlength="300" placeholder="Optional rights notice"><div class="panel-divider"></div><div class="inspector-subtitle">MEASUREMENT UNITS</div>
+          <label for="measurement-units">DISPLAY &amp; ENTRY UNITS</label>
+          <select id="measurement-units" aria-label="Measurement units"><option value="mm">Millimeters (mm)</option><option value="cm">Centimeters (cm)</option><option value="in">Inches (in)</option><option value="pt">Points (pt)</option><option value="pc">Picas (pc)</option><option value="px">Pixels (96 dpi)</option><option value="custom">Custom units</option></select>
+          <div id="custom-unit-controls" hidden><label for="custom-units-per-inch">CUSTOM UNITS PER INCH</label><input id="custom-units-per-inch" type="number" min="0.01" max="100000" step="0.1" value="10"><p class="panel-hint">Example: 8 means one custom unit is ⅛ inch. Conversions do not change actual paper dimensions.</p></div>
+          <div class="panel-divider"></div><div class="inspector-subtitle">COLUMNS &amp; SNAP</div>
+          <div class="input-grid"><div><label for="page-columns">COLUMNS</label><input id="page-columns" type="number" min="1" max="12" step="1"></div><div><label for="page-gutter">GUTTER / <span class="unit-label">MM</span></label><input id="page-gutter" type="number" min="0" step="0.5"></div></div>
+          <label class="check-label"><input id="show-guides" type="checkbox" checked> Show margin guides</label>
+          <label class="check-label"><input id="show-columns" type="checkbox" checked> Show column guides</label>
+          <label class="check-label"><input id="show-rulers" type="checkbox" checked> Show horizontal and vertical rulers</label>
+          <label class="check-label"><input id="snap-columns" type="checkbox" checked> Snap dragged frames to columns</label>
+          <label for="nudge-step">ARROW KEY STEP</label><select id="nudge-step"><option value="pixel">1 pixel (96 dpi)</option><option value="unit">1 selected unit</option></select>
+          <p class="panel-hint">Select a frame, then use arrow keys to move it. Hold Shift to move 10 steps. Double-click text to enter editing mode.</p>
+          <p class="panel-hint">Paper dimensions apply to every page. Guides are never exported.</p>
+          <div class="panel-divider"></div><div class="inspector-subtitle">PARENT / MASTER PAGE</div>
+          <label for="page-master-select">APPLY TO THIS PAGE</label><select id="page-master-select"><option value="">No parent page</option></select>
+          <button type="button" id="master-manage" class="full-btn" aria-haspopup="dialog" aria-controls="master-dialog">▤ Edit parent pages…</button>
+          <p class="panel-hint">Reusable headers and footers, with dynamic {page}, {pages}, and {title} fields. Automatic page numbers update when pages move.</p>
+          <div class="panel-divider"></div><div class="inspector-subtitle">PAGE COMMANDS</div>
+          <label for="page-label">PAGE LABEL</label><input id="page-label" type="text" maxlength="200" placeholder="e.g. Cover, Chapter 1"><div class="page-order-tools" role="group" aria-label="Page ordering"><button type="button" id="page-move-before" aria-label="Move current page one position earlier">↑ Move earlier</button><button type="button" id="page-move-after" aria-label="Move current page one position later">↓ Move later</button></div><button id="duplicate-page-btn" class="full-btn">Duplicate current page</button><button id="delete-page-btn" class="full-btn btn-danger">Delete current page</button>
+        </div>
+        <section id="inspector-fonts" role="tabpanel" aria-labelledby="tab-fonts" hidden>
+          <div class="inspector-subtitle">PROJECT FONT LIBRARY</div>
+          <p class="panel-hint">Embed a locally owned font into this publication. TTF, OTF, WOFF and WOFF2. Up to 5 MB per font and 16 MB total.</p>
+          <button type="button" id="font-studio-open" class="full-btn" aria-haspopup="dialog" aria-controls="typography-studio-dialog">✎ Design a font in Typography Studio…</button>
+          <button id="font-import-btn" class="full-btn" aria-label="Import a local font file">＋ Import font file…</button>
+          <div id="project-font-list" role="list" aria-label="Fonts embedded in this project" class="project-font-list"></div>
+          <p class="panel-hint">Embedded fonts are saved in .skoshpress projects. Only import fonts you have permission to use and distribute.</p>
+        </section>
+        <div class="panel-spacer"></div>
+        
+      </aside>
+    </main>
+    <footer class="status-bar"><div id="status-text" role="status" aria-live="polite">Ready to create something.</div><div><span class="status-ready" aria-hidden="true"></span> <span id="word-count-status">0 WORDS</span> <span class="meta-separator" aria-hidden="true">/</span> OFFLINE EDITOR</div></footer>
+  </div>
+  <dialog id="settings-dialog" aria-labelledby="settings-title" aria-describedby="settings-description">
+    <div class="settings-top"><div class="settings-title-group"><h2 id="settings-title">SETTINGS & ACCESSIBILITY</h2></div><button type="button" id="settings-close" aria-label="Close settings">✕</button></div>
+    <p id="settings-description" class="panel-hint">These settings affect the editor interface, not your publication or PDF output. They are saved locally on this computer.</p>
+    <label for="settings-theme">APPEARANCE</label><select id="settings-theme"><option value="light">Light</option><option value="dark">Dark</option><option value="system">Follow system</option></select>
+    <label class="check-label"><input type="checkbox" id="settings-large-text"> Larger interface text</label>
+    <label class="check-label"><input type="checkbox" id="settings-high-contrast"> Extra-high contrast controls</label>
+    <label class="check-label"><input type="checkbox" id="settings-reduced-motion"> Disable button animations and motion</label><p class="panel-hint motion-hint">Press effects and panel transitions are turned off when selected. Your system's reduced-motion setting is respected automatically.</p>
+    <label class="check-label"><input type="checkbox" id="settings-large-handles"> Larger frame resize handles</label><label class="check-label"><input type="checkbox" id="settings-reading-comfort"> Comfortable reading spacing in editor panels</label><label class="check-label"><input type="checkbox" id="settings-enhanced-focus" aria-describedby="settings-focus-help"> Stronger focus outlines for keyboard and mouse</label><div class="focus-preview-row"><p id="settings-focus-help" class="panel-hint">Click or Tab to a control to see the outline. Try the button to compare the standard and stronger styles.</p><button id="settings-focus-preview" type="button" aria-describedby="settings-focus-help settings-focus-status">Try outline</button><span id="settings-focus-status" class="sr-only" role="status" aria-live="polite"></span></div><label class="check-label"><input type="checkbox" id="settings-announce-selection" checked> Announce selected pages and frames to screen readers</label>
+    <label class="check-label"><input type="checkbox" id="settings-simple-stage"> Simplify canvas background pattern</label>
+    <label class="check-label"><input type="checkbox" id="settings-rulers" checked> Show rulers alongside publication pages</label>
+    <label class="check-label"><input type="checkbox" id="settings-spellcheck" checked> Check spelling while editing text</label>
+    <label for="settings-spelling-language">SPELLING DICTIONARY</label><select id="settings-spelling-language"><option value="en-US">English (US)</option><option value="en-GB">English (UK)</option><option value="en-CA">English (Canada)</option><option value="en-AU">English (Australia)</option><option value="fr">French</option><option value="de">German</option><option value="es">Spanish</option></select>
+    <div class="dictionary-manager" role="group" aria-label="Manage offline spelling dictionaries"><div class="utility-actions"><button id="dictionary-import" type="button" aria-describedby="dictionary-status">Import .bdic dictionary</button><button id="dictionary-words" type="button" aria-describedby="dictionary-status">Import personal words (.txt)</button></div><p id="dictionary-status" role="status" aria-live="polite" class="panel-hint">Checking local dictionaries…</p></div><p class="panel-hint">Electron uses Chromium .bdic dictionaries (not .dic/.aff pairs). Imported .bdic languages take effect after restarting the app. The personal word list accepts UTF-8 words, one per line. Double-click a text frame to edit and enable spelling marks.</p>
+    <p class="settings-note">Screen-reader names, status announcements, visible keyboard focus and document navigation are available by default.</p>
+    <div class="settings-actions"><button id="settings-reset">Reset preferences</button><button id="settings-done" class="btn-ink">Done</button></div>
+  </dialog>
+  <dialog id="templates-dialog" class="utility-dialog" aria-labelledby="templates-title">
+    <div class="utility-heading"><h2 id="templates-title">REUSABLE TEMPLATES</h2><button type="button" id="templates-close" aria-label="Close templates">✕</button></div>
+    <p class="panel-hint">Start a new publication with a built-in layout, or save your current arrangement to reuse later. Loading a template creates a new, unsaved project.</p>
+    <h3>BUILT-IN LAYOUTS</h3><div id="builtin-templates" class="template-list" role="list" aria-label="Built-in layouts"></div>
+    <h3>YOUR TEMPLATES</h3><div id="user-templates" class="template-list" role="list" aria-label="Saved layouts"><p class="empty-note">No saved templates yet.</p></div>
+    <div class="template-create"><label for="template-name">TEMPLATE NAME</label><input id="template-name" maxlength="80" placeholder="My A5 poetry collection"><button type="button" id="template-save" class="btn-ink">Save current layout as template</button></div>
+  </dialog>
+  <dialog id="interchange-dialog" class="utility-dialog" aria-labelledby="interchange-title" aria-describedby="interchange-intro">
+    <div class="utility-heading"><h2 id="interchange-title">EXPORT FORMATS</h2><button id="interchange-close" type="button" aria-label="Close export formats">✕</button></div>
+    <p id="interchange-intro" class="panel-hint">Choose where this publication is going. PDF and HTML retain the visible page arrangement; editable manuscript formats reflow text and may omit artwork or custom positioning.</p>
+    <label for="publication-export-format">OUTPUT FORMAT</label>
+    <select id="publication-export-format" aria-describedby="interchange-intro publication-export-description">
+      <option value="pdf">PDF · Standard, page-accurate</option>
+      <option value="docx">DOCX · Microsoft Word / editorial review</option>
+      <option value="epub">EPUB · Reflowable e-book</option>
+      <option value="html">HTML · Standalone page-layout proof</option>
+      <option value="txt">TXT · Plain UTF-8 manuscript</option>
+      <option value="rtf">RTF · InDesign / word processing</option>
+      <option value="sla">SLA · Scribus (experimental)</option>
+    </select>
+    <p id="publication-export-description" class="panel-hint" role="status" aria-live="polite" aria-atomic="true">PDF: faithful page-layout proof at the current paper size. No PDF/A or PDF/X certification.</p>
+    <div class="utility-actions"><button id="publication-export-submit" type="button" class="btn-ink" aria-describedby="publication-export-description publication-export-status">Export selected format…</button></div>
+    <p id="publication-export-status" class="panel-hint" role="status" aria-live="polite" aria-atomic="true">No export started.</p>
+    <p class="settings-note">Keep the original .skoshpress files and review the output before submitting it to a printer, publisher, or archive. InDesign RTF, DOCX and EPUB are editable/reflowable manuscripts, not page-layout replicas.</p>
+  </dialog>
+  <dialog id="find-dialog" class="utility-dialog" aria-labelledby="find-title" aria-describedby="find-help">
+    <div class="utility-heading"><h2 id="find-title">FIND & REPLACE</h2><button type="button" id="find-close" aria-label="Close find and replace">✕</button></div>
+    <div id="editorial-stats" class="editorial-stats" role="status" aria-live="polite">Words · Characters · Pages</div>
+    <label for="find-query">FIND TEXT</label><input id="find-query" type="search" maxlength="300" placeholder="Search the entire publication" autocomplete="off">
+    <label for="replace-query">REPLACE WITH</label><input id="replace-query" type="text" maxlength="2000" placeholder="Replacement text">
+    <label class="check-label"><input id="find-case" type="checkbox"> Match case</label>
+    <div class="utility-actions"><button id="find-next" type="button">Find next</button><button id="replace-current" type="button">Replace found</button><button id="replace-all" type="button" class="btn-ink">Replace all</button></div>
+    <p id="find-result" class="panel-hint" role="status" aria-live="polite">Enter text to begin.</p>
+    <h3>OBJECT NOTES</h3><div id="editorial-notes-list" class="editorial-notes-list" role="list" aria-label="Object editorial notes"><span class="empty-note">No object notes yet.</span></div>
+    <p class="panel-hint" id="find-help">Find/replace operates on visible text in frames and linked manuscript stories. Review replacements that cross paragraph or page boundaries before exporting.</p>
+  </dialog>
+
+  <dialog id="genealogy-dialog" class="utility-dialog" aria-labelledby="genealogy-title" aria-describedby="genealogy-description">
+    <div class="utility-heading"><h2 id="genealogy-title">GENEALOGY STUDIO</h2><button id="genealogy-close" type="button" aria-label="Close Genealogy Studio">✕</button></div>
+    <p id="genealogy-description" class="panel-hint">Offline, read-only GEDCOM importer. Start with an Ancestry export (.zip or .ged). Creates a NEW editable publication; never changes the exported family tree.</p>
+    <div class="utility-actions"><button id="genealogy-import" type="button" class="btn-ink" aria-describedby="genealogy-description genealogy-summary">Import Ancestry / GEDCOM…</button></div>
+    <p id="genealogy-summary" class="panel-hint" role="status" aria-label="GEDCOM import status" aria-live="polite">No tree imported.</p>
+    <label for="genealogy-report-title">PUBLICATION TITLE</label><input id="genealogy-report-title" type="text" maxlength="140" value="Family History Research">
+    <div class="input-grid"><div><label for="genealogy-mode">RESEARCH REGISTER TYPE</label><select id="genealogy-mode"><option value="register">Individual records (ID-linked)</option><option value="families">Family-group register</option><option value="timeline">Chronological event list</option><option value="places">Place gazetteer</option><option value="sources">Cited source inventory</option></select></div><div><label for="genealogy-limit">MAXIMUM ENTRIES (1–200)</label><input id="genealogy-limit" type="number" min="1" max="200" step="1" value="40" aria-describedby="genealogy-limit-help"></div></div>
+    <div class="input-grid"><div><label for="genealogy-density">ENTRY DENSITY</label><select id="genealogy-density"><option value="compact">Compact archival listing</option><option value="detailed">Expanded fields</option></select></div><div><label for="genealogy-surname">SURNAME FILTER (OPTIONAL)</label><input id="genealogy-surname" type="text" maxlength="120" placeholder="e.g. Johnson" autocomplete="off"></div></div>
+    <label class="check-label"><input id="genealogy-private" type="checkbox" checked> Exclude potentially living people (conservative estimate)</label>
+    <label class="check-label"><input id="genealogy-citations" type="checkbox" checked> Source citations with original references and details</label>
+    <label class="check-label"><input id="genealogy-surname-index" type="checkbox" checked> Append alphabetical surname index (record identifiers)</label>
+    <label class="check-label"><input id="genealogy-place-index" type="checkbox"> Append place index (record identifiers)</label>
+    <label class="check-label"><input id="genealogy-notes" type="checkbox"> Include research notes and event annotations (review for private information)</label>
+    <div class="panel-divider"></div>
+    <label for="genealogy-csv-type">STRUCTURED DATA EXPORT (ALL MATCHING RECORDS)</label>
+    <div class="utility-actions"><select id="genealogy-csv-type" aria-label="Structured CSV export type" aria-describedby="genealogy-limit-help"><option value="people">Individuals · CSV</option><option value="events">Events · CSV</option><option value="families">Families · CSV</option><option value="places">Places · CSV</option><option value="sources">Cited sources · CSV</option></select><button id="genealogy-csv" type="button" disabled aria-describedby="genealogy-limit-help genealogy-csv-status">Save CSV locally…</button></div>
+    <p id="genealogy-csv-status" role="status" aria-live="polite" aria-atomic="true" class="panel-hint">No CSV export started.</p>
+    <p id="genealogy-limit-help" class="panel-hint">The 200-entry cap applies only to the current manuscript. CSV exports every matching record. No client records leave your computer. Index references use stable GEDCOM IDs, not changeable page numbers.</p>
+    <p id="genealogy-warning" class="panel-hint" role="status" aria-label="Genealogy report warnings" aria-live="polite">Dates and citations must be checked against original records before publishing. Unknown dates are retained as supplied.</p>
+    <div class="utility-actions"><button id="genealogy-generate" type="button" disabled class="btn-ink" aria-describedby="genealogy-warning">Create editable research manuscript</button></div>
+    <div class="panel-divider"></div>
+    <h3 id="genealogy-batch-title">BATCH PUBLICATION · EDITABLE VOLUMES</h3>
+    <p class="panel-hint" id="genealogy-batch-help">Create all matching entries as separate editable .skoshpress volumes, each using the selected research mode, citations, indexes, and privacy settings. The existing manuscript stays open. Choose a folder to receive a new, separate publication directory with a verification manifest. Each volume can be exported to PDF after review.</p>
+    <div class="input-grid"><div><label for="genealogy-volume-size">ENTRIES PER VOLUME (1–200)</label><input id="genealogy-volume-size" type="number" value="100" min="1" max="200" step="1" aria-describedby="genealogy-batch-help"></div></div>
+    <div class="utility-actions"><button id="genealogy-batch" type="button" class="btn-ink" disabled aria-describedby="genealogy-batch-help">Generate all editable volumes…</button><button id="genealogy-batch-cancel" type="button" disabled hidden aria-describedby="genealogy-batch-status">Cancel batch</button></div>
+    <progress id="genealogy-batch-progress" max="1" value="0" hidden aria-label="Batch publication progress" aria-describedby="genealogy-batch-status"></progress>
+    <p id="genealogy-batch-status" role="status" aria-live="polite" aria-atomic="true" class="panel-hint">No batch running.</p>
+    <p class="settings-note">Privacy: tree contents stay on this computer, and Ancestry login is not used. This version handles common GEDCOM 5.5.1 / 7 fields; vendor-specific extensions and images are not fully reproduced. The living-person filter is heuristic and cannot detect private names inside citations. Manually review all output.</p>
+  </dialog>
+  <!-- Manuscript Editor -->
+  <dialog id="story-dialog" class="utility-dialog story-dialog" aria-labelledby="story-editor-title" aria-describedby="story-editor-help">
+    <div class="utility-heading"><h2 id="story-editor-title">EDIT LINKED MANUSCRIPT</h2><button type="button" id="story-cancel" aria-label="Cancel manuscript edits">✕</button></div>
+    <p id="story-editor-help" class="panel-hint">Edit the full manuscript, not a page fragment. Save and reflow preserves paragraph boundaries and inline formatting. Cancel discards changes made in this editor.</p>
+    <h3 id="story-editor-name">Linked manuscript</h3>
+    <div class="story-toolbar" role="toolbar" aria-label="Manuscript formatting">
+      <button type="button" data-story-command="bold" aria-label="Bold selected manuscript text" title="Bold selection"><strong>B</strong></button>
+      <button type="button" data-story-command="italic" aria-label="Italicize selected manuscript text" title="Italic selection"><em>I</em></button>
+      <button type="button" data-story-command="underline" aria-label="Underline selected manuscript text" title="Underline selection"><u>U</u></button>
+      <button type="button" data-story-command="insertUnorderedList" title="Bulleted list" aria-label="Insert bulleted list">• List</button>
+      <button type="button" data-story-command="insertOrderedList" title="Numbered list" aria-label="Insert numbered list">1. List</button>
+    </div>
+    <div id="story-editable" class="story-editable frame-text" contenteditable="true" role="textbox" aria-label="Entire linked manuscript" aria-describedby="story-editor-help" aria-multiline="true" spellcheck="true"></div>
+    <div class="utility-actions story-actions"><button type="button" id="story-save" class="btn-ink">Apply and reflow</button><button type="button" id="story-cancel-button" aria-label="Cancel changes">Cancel</button></div>
+  </dialog>
+  <!-- Document Checks -->
+  <dialog id="preflight-dialog" class="utility-dialog production-dialog" aria-labelledby="preflight-title" aria-describedby="preflight-description">
+    <div class="utility-heading"><h2 id="preflight-title">DOCUMENT CHECKS</h2><button type="button" id="preflight-close" aria-label="Close document checks">✕</button></div>
+    <p id="preflight-description" class="panel-hint">Check layout edges, image descriptions, print resolution, readability, headings, and publication details before distributing. Select an issue to navigate to it. Preview every page visually before sending to print.</p>
+    <div class="preflight-summary" id="preflight-summary" role="status" aria-live="polite" aria-atomic="true"></div>
+    <div class="preflight-toolbar"><label for="preflight-filter">SHOW ISSUES</label><select id="preflight-filter" aria-label="Filter publication issues"><option value="all">All issues</option><option value="error">Must fix</option><option value="warning">Suggestions</option></select><button id="preflight-refresh" type="button">Run checks again</button><button id="preflight-copy" type="button">Copy report</button></div>
+    <div id="preflight-issues" class="preflight-issues" role="list" aria-label="Publication issues"></div>
+    <p id="preflight-copy-status" role="status" aria-live="polite" class="panel-hint">Issues are guidance, not a substitute for reviewing a printed proof or testing an e-book on readers.</p>
+  </dialog>
+  <!-- Production Dialogs -->
+  <dialog id="revisions-dialog" class="utility-dialog production-dialog" aria-labelledby="revisions-title" aria-describedby="revisions-description">
+    <div class="utility-heading"><h2 id="revisions-title">REVISION IMPACT CHECKER</h2><button type="button" id="revisions-close" aria-label="Close revision checker">✕</button></div>
+    <p id="revisions-description" class="panel-hint">Choose an older Skosh Press project to compare with the publication currently open. Unsaved changes in the current publication are included. Neither project will be changed.</p>
+    <div class="utility-actions"><button type="button" id="revision-load" class="btn-ink">Compare with project…</button><button type="button" id="revision-refresh" disabled>Refresh comparison</button></div>
+    <p id="revision-baseline" class="panel-hint">No comparison selected.</p>
+    <div id="revision-summary" class="revision-summary" role="status" aria-live="polite">Choose a previous project to see changes.</div>
+    <div id="revision-warnings" class="revision-warnings" aria-live="polite"></div>
+    <div id="revision-results" class="revision-results" role="region" aria-label="Detected publication changes"></div>
+    <p class="panel-hint">Object IDs track edits across saved versions. This checker flags text, layout, and image changes but does not prove a print layout is free of overflow. Always inspect the exported PDF.</p>
+  </dialog>
+  <dialog id="print-lab-dialog" class="utility-dialog production-dialog" aria-labelledby="print-lab-title" aria-describedby="print-lab-description">
+    <div class="utility-heading"><h2 id="print-lab-title">PRINT STUDIO</h2><button type="button" id="print-lab-close" aria-label="Close Print Studio">✕</button></div>
+    <div class="lab-scroll" role="region" aria-label="Print Studio settings and plan" tabindex="0">
+    <p id="print-lab-description" class="panel-hint">Plan sheets, booklet pairings, and approximate printing costs. Profiles are saved on this computer. They do not change the publication's paper size or control the printer driver.</p>
+    <div class="lab-layout">
+      <section class="lab-form" aria-labelledby="lab-profile-heading">
+        <h3 id="lab-profile-heading">PRINTER PROFILE</h3>
+        <label for="lab-saved-profile">SAVED PROFILES</label><select id="lab-saved-profile" aria-label="Select a saved printer profile"><option value="">Unsaved / custom profile</option></select>
+        <label for="lab-name">PROFILE NAME</label><input id="lab-name" type="text" maxlength="70" value="Home Letter Printer">
+        <div class="input-grid"><div><label for="lab-width">SHEET WIDTH / MM</label><input id="lab-width" type="number" min="50" max="1000" step="0.1" value="215.9"></div><div><label for="lab-height">SHEET HEIGHT / MM</label><input id="lab-height" type="number" min="50" max="1000" step="0.1" value="279.4"></div></div>
+        <label for="lab-margin">UNPRINTABLE EDGE / MM</label><input id="lab-margin" type="number" min="0" max="35" step="0.1" value="5">
+        <div class="input-grid"><div><label for="lab-binding">BINDING</label><select id="lab-binding"><option value="saddle">Folded / stapled booklet</option><option value="loose">Loose pages</option></select></div><div><label for="lab-duplex">DUPLEX</label><select id="lab-duplex"><option value="short">Flip short edge</option><option value="long">Flip long edge</option><option value="none">Single sided / manual</option></select></div></div>
+        <div class="input-grid"><div><label for="lab-color">PRINT MODE</label><select id="lab-color"><option value="mono">Black and white</option><option value="color">Color</option></select></div><div><label for="lab-copies">COPIES</label><input id="lab-copies" type="number" min="1" max="100000" step="1" value="25"></div></div>
+        <h3>ESTIMATED MATERIAL COSTS</h3>
+        <p class="panel-hint">Enter monetary amounts in your preferred currency; all totals use that same currency.</p>
+        <div class="input-grid"><div><label for="lab-paper-cost">PER SHEET</label><input id="lab-paper-cost" type="number" min="0" max="10000" step="0.001" value="0.08"></div><div><label for="lab-ink-cost">PER PRINTED SIDE</label><input id="lab-ink-cost" type="number" min="0" max="10000" step="0.001" value="0.035"></div></div>
+        <label for="lab-staple-cost">STAPLES / FASTENING PER COPY</label><input id="lab-staple-cost" type="number" min="0" max="10000" step="0.001" value="0.025">
+        <div class="utility-actions"><button id="lab-save-profile" type="button" class="btn-ink">Save profile</button><button id="lab-delete-profile" type="button" disabled>Delete saved profile</button></div>
+        <p id="lab-profile-status" role="status" aria-live="polite" class="panel-hint">Profiles are local to this computer.</p>
+      </section>
+      <section class="lab-plan" aria-labelledby="lab-plan-heading">
+        <h3 id="lab-plan-heading">PRINTING PLAN</h3>
+        <div id="lab-output" role="status" aria-live="polite">Enter printer settings to see your printing plan.</div>
+        <div id="lab-warning" role="note" aria-label="Print warnings" aria-live="polite"></div>
+        <h3>BOOKLET ASSEMBLY</h3>
+        <div id="lab-pairings" role="group" aria-label="Front and back page pairs for each sheet"></div>
+        <div class="utility-actions"><button type="button" id="lab-export-pdf">Export page PDF</button><button type="button" id="lab-export-booklet" class="btn-ink">Export booklet PDF</button></div>
+        <p class="panel-hint">The existing booklet export uses saddle-stitch order. Print Studio is a planning estimate, not a calibration tool or a printer-driver replacement. Print one test sheet first.</p>
+      </section>
+    </div>
+    </div>
+  </dialog>
+  <!-- Help Dialogs -->
+  <dialog id="help-basics-dialog" class="utility-dialog help-dialog" aria-labelledby="help-basics-title" aria-describedby="help-basics-intro">
+    <div class="utility-heading"><h2 id="help-basics-title">BASICS &amp; SHORTCUTS</h2><button id="help-basics-close" class="help-close" type="button" aria-label="Close basics and shortcuts">✕</button></div>
+    <div class="help-content" role="region" aria-label="Basics and shortcuts" tabindex="0">
+      <p id="help-basics-intro">The essentials for working in Skosh Press. On Mac, use Command in place of Ctrl.</p>
+      <h3>PROJECTS</h3>
+      <p>Use <strong>New</strong> to start, <strong>Open</strong> to load a project, and <strong>Save</strong> to keep your edits. <strong>Templates</strong> provide ready-made layouts. <strong>Import DOCX / TXT</strong> adds a manuscript.</p>
+      <h3>PAGES &amp; OBJECTS</h3>
+      <p>Use <strong>+ Page</strong> to add a page. Select pages on the left. Add a <strong>Text frame</strong> or <strong>Place image</strong>, then select an object to edit its settings on the right. Drag the object handle to move it; drag the corner handle to resize it. Double-click a text frame to edit its contents.</p>
+      <h3>LAYOUT &amp; EXPORT</h3>
+      <p>Set page size, margins, guides and publication details in <strong>Inspector → Document</strong>. Use <strong>Check document</strong> to find layout issues, <strong>Print Studio</strong> for sheet and booklet planning, and <strong>Export PDF</strong> or <strong>Export formats</strong> to create files. <strong>Focus</strong> provides a smaller editing toolbar.</p>
+      <h3>KEYBOARD SHORTCUTS</h3>
+      <table class="help-shortcuts"><thead><tr><th scope="col">Action</th><th scope="col">Keys</th></tr></thead><tbody>
+        <tr><th scope="row">New project</th><td><kbd>Ctrl</kbd> + <kbd>N</kbd></td></tr>
+        <tr><th scope="row">Open project</th><td><kbd>Ctrl</kbd> + <kbd>O</kbd></td></tr>
+        <tr><th scope="row">Save / Save As</th><td><kbd>Ctrl</kbd> + <kbd>S</kbd> / <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd></td></tr>
+        <tr><th scope="row">Import manuscript</th><td><kbd>Ctrl</kbd> + <kbd>I</kbd></td></tr>
+        <tr><th scope="row">Undo / Redo</th><td><kbd>Ctrl</kbd> + <kbd>Z</kbd> / <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd></td></tr>
+        <tr><th scope="row">Find and replace</th><td><kbd>Ctrl</kbd> + <kbd>F</kbd></td></tr>
+        <tr><th scope="row">Check document</th><td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd></td></tr>
+        <tr><th scope="row">Focus View</th><td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd></td></tr>
+        <tr><th scope="row">Export PDF</th><td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd></td></tr>
+        <tr><th scope="row">Settings</th><td><kbd>Ctrl</kbd> + <kbd>,</kbd></td></tr>
+        <tr><th scope="row">Move selected object</th><td><kbd>Arrow keys</kbd> (<kbd>Shift</kbd> for larger steps)</td></tr>
+        <tr><th scope="row">Delete selected object</th><td><kbd>Delete</kbd> / <kbd>Backspace</kbd></td></tr>
+        <tr><th scope="row">Edit text frame</th><td><kbd>Enter</kbd> / <kbd>F2</kbd></td></tr>
+        <tr><th scope="row">Deselect or close a dialog</th><td><kbd>Esc</kbd></td></tr>
+      </tbody></table>
+      <p class="panel-hint">Keyboard movement applies when an object is selected and you're not typing in a field. Tab moves between controls. Settings includes text, contrast, focus and motion options.</p>
+    </div>
+  </dialog>
+  <dialog id="help-privacy-dialog" class="utility-dialog help-dialog" aria-labelledby="help-privacy-title" aria-describedby="help-privacy-intro">
+    <div class="utility-heading"><h2 id="help-privacy-title">PRIVACY POLICY</h2><button id="help-privacy-close" class="help-close" type="button" aria-label="Close privacy policy">✕</button></div>
+    <div class="help-content" role="region" aria-label="Privacy policy" tabindex="0">
+      <p id="help-privacy-intro"><strong>Skosh Press · KeyOuts</strong><br>Effective October 11, 2026.</p>
+      <h3>DATA COLLECTION</h3>
+      <p>Skosh Press does not require an account or collect usage data. It has no ads, analytics or automatic crash reporting.</p>
+      <h3>LOCAL FILES</h3>
+      <p>Projects, imports and exports are handled on your computer. The app does not upload your work. You choose where to save files. Preferences, templates, printer profiles, dictionaries and recovery data may be kept in local application storage.</p>
+      <h3>INTERNET &amp; SHARING</h3>
+      <p>Publishing tools work offline. There is no cloud sync or automatic updater. If you share an exported file through another service, that service's privacy terms apply.</p>
+      <h3>REMOVING DATA</h3>
+      <p>Delete saved files where you stored them. Local settings or recovery files may remain after uninstalling; remove the application's data folder to clear them.</p>
+      <h3>POLICY CHANGES</h3>
+      <p>Changes to this policy will be included with a software release.</p>
+    </div>
+  </dialog>
+
+  <dialog id="master-dialog" class="utility-dialog feature-dialog" aria-labelledby="master-title">
+    <div class="utility-heading"><h2 id="master-title">PARENT PAGE STUDIO</h2><button type="button" id="master-close" aria-label="Close parent page studio">✕</button></div>
+    <p class="panel-hint">Build repeating publication headers, footers and live page numbers. Apply a parent to a page, and auto-flow continuation pages inherit it.</p>
+    <label for="master-list">PARENT PAGE</label><select id="master-list"></select>
+    <label for="master-name">NAME</label><input id="master-name" maxlength="64" value="Standard">
+    <label for="master-header">RUNNING HEADER</label><input id="master-header" maxlength="200" placeholder="e.g. {title}">
+    <label for="master-footer">RUNNING FOOTER</label><input id="master-footer" maxlength="200" placeholder="e.g. {page} of {pages}">
+    <label class="check-label"><input id="master-numbers" type="checkbox" checked> Show automatic page number at outside corner</label>
+    <label for="master-offset">PAGE NUMBER OFFSET</label><input id="master-offset" type="number" min="-10000" max="10000" value="0" step="1">
+    <div class="studio-button-row"><button type="button" id="master-new">＋ New</button><button type="button" id="master-save" class="btn-ink">Save &amp; apply</button><button type="button" id="master-remove" aria-label="Delete selected parent page">Delete</button></div>
+  </dialog>
+  <dialog id="toolbar-customize-dialog" class="utility-dialog toolbar-customize-dialog" aria-labelledby="toolbar-customize-title">
+    <div class="utility-heading"><h2 id="toolbar-customize-title">CUSTOMIZE QUICK TOOLS</h2><button id="toolbar-customize-close" type="button" aria-label="Close toolbar customization">✕</button></div>
+    <p class="panel-hint">Pin up to eight commands for one-click access from any tool tab. Drag the pinned chips to reorder, or use the arrow buttons here. Your choices stay on this computer across projects.</p>
+    <div id="toolbar-customize-list" class="toolbar-customize-list" role="group" aria-label="Choose commands to pin"></div>
+    <p id="toolbar-customize-status" class="panel-hint" role="status" aria-live="polite"></p>
+    <div class="studio-button-row"><button id="toolbar-defaults" type="button">Restore defaults</button><button id="toolbar-customize-done" class="btn-ink" type="button">Done</button></div>
+  </dialog>
+  <dialog id="typography-studio-dialog" class="utility-dialog typography-dialog" aria-labelledby="typography-title">
+    <div class="utility-heading"><h2 id="typography-title">TYPOGRAPHY STUDIO · BÉZIER VECTORS</h2><button type="button" id="studio-close" aria-label="Close Typography Studio">✕</button></div>
+    <p class="panel-hint">Design fonts independently in Your Font Library, embed them in publications, or export fonts for use elsewhere. Extended Latin and common publishing symbols are available as editable characters.</p>
+    <section class="studio-library-panel" aria-label="Independent font library">
+      <div class="studio-button-row"><label for="studio-library-picker">YOUR FONT LIBRARY <select id="studio-library-picker"><option value="">Select a saved library font…</option></select></label>
+      <button type="button" id="studio-library-load">Open from library</button><button type="button" id="studio-library-save" class="btn-ink">Save to library</button><button type="button" id="studio-library-delete" aria-label="Remove selected font from library">Remove from library</button></div>
+      <p class="panel-hint">The independent library is stored on this computer, outside any .skoshpress publication. Use “Save font family to project” below only when you want to embed it in the current publication.</p>
+    </section>
+    <div class="studio-button-row"><label for="studio-design">YOUR DESIGNS<select id="studio-design"></select></label><label for="studio-name">FONT NAME<input id="studio-name" maxlength="64" value="My Skosh Font"></label><button type="button" id="studio-new" aria-label="Create a new font design">＋ New font</button></div>
+    <div class="studio-letter-row"><label for="studio-glyph">GLYPH TO EDIT<select id="studio-glyph"></select></label><label class="studio-check"><input id="studio-reference" type="checkbox" checked> Show letter guide</label></div>
+    <details class="studio-feature-editor" id="studio-components-panel">
+      <summary>REUSABLE GLYPH COMPONENTS <span class="studio-word-tag">LINKED CONTOURS</span></summary>
+      <div class="studio-feature-body">
+        <p class="panel-hint">Turn any selected contour into a component (stem, serif, accent, flourish). Place linked copies into multiple characters. Updating the original component refreshes every linked use, including exports. Linked copies are non-destructive.</p>
+        <div class="studio-feature-line">
+          <label for="studio-component-name">COMPONENT NAME <input id="studio-component-name" maxlength="48" value="Serif" spellcheck="false"></label>
+          <button type="button" id="studio-component-create">Save selected contour</button>
+          <label for="studio-component-select">SAVED COMPONENTS <select id="studio-component-select"><option value="">No saved components</option></select></label>
+          <button type="button" id="studio-component-update" aria-label="Update linked component from selected contour">Update from contour</button><button type="button" id="studio-component-delete" aria-label="Delete component from saved reusable components">Delete component</button>
+        </div>
+        <div class="studio-feature-line">
+          <label for="studio-component-dx">X OFFSET <input id="studio-component-dx" type="number" min="-700" max="700" value="0" step="10"></label>
+          <label for="studio-component-dy">Y OFFSET <input id="studio-component-dy" type="number" min="-900" max="900" value="0" step="10"></label>
+          <label for="studio-component-scale">SCALE % <input id="studio-component-scale" type="number" min="25" max="200" value="100" step="5"></label>
+          <button type="button" id="studio-component-place" aria-label="Insert selected linked component">Place linked component</button>
+          <label for="studio-component-links">THIS GLYPH'S LINKS <select id="studio-component-links"><option value="">No linked components</option></select></label>
+          <button type="button" id="studio-component-unlink" aria-label="Remove selected link from this glyph">Remove selected link</button>
+        </div>
+      </div>
+    </details>
+    <details class="studio-feature-editor" id="studio-integrity-panel">
+      <summary>FONT INTEGRITY <span class="studio-word-tag">EXPORT READINESS</span></summary>
+      <div class="studio-feature-body">
+        <p class="panel-hint">Review contour constraints, font-family faces, and editable character coverage. This is a useful local review, not a guarantee of compatibility in every application.</p>
+        <div class="studio-button-row"><button type="button" id="studio-integrity-run" aria-label="Review font integrity and export readiness">Review font integrity</button><label for="studio-integrity-filter">SHOW FINDINGS <select id="studio-integrity-filter"><option value="all">All</option><option value="error">Blocking errors</option><option value="warning">Warnings</option><option value="notice">Suggestions</option></select></label></div>
+        <p id="studio-integrity-summary" role="status" aria-live="polite" aria-atomic="true"></p>
+        <p id="studio-integrity-counts" class="panel-hint"></p>
+        <ul id="studio-integrity-results" class="studio-integrity-results" aria-label="Font integrity findings, select an issue to navigate to its editor"></ul>
+      </div>
+    </details>
+    <details id="studio-specimen-panel" class="studio-feature-editor" open>
+      <summary>TYPE SPECIMEN STUDIO <span class="studio-word-tag">PRINT &amp; PROOF</span></summary>
+      <div class="studio-feature-body">
+        <p class="panel-hint" id="studio-specimen-help">Proof the generated, installable TrueType face in a book page, editorial spread, poster, or glyph sheet. Presets include classic Lorem ipsum, pangrams, numbers, and accented character checks. This is a static-face proof; use the Variable Font Workspace for continuous wght interpolation.</p>
+        <div class="studio-feature-line">
+          <label for="studio-specimen-preset">SAMPLE TEXT <select id="studio-specimen-preset"><option value="lorem">Classic Lorem ipsum</option><option value="pangram">Pangrams</option><option value="editorial">Editorial excerpt</option><option value="unicode">Extended Latin &amp; punctuation</option><option value="numerals">Numbers &amp; symbols</option><option value="custom">Custom text</option></select></label>
+          <label for="studio-specimen-layout">PROOF LAYOUT <select id="studio-specimen-layout"><option value="book">Book page</option><option value="editorial">Editorial spread</option><option value="poster">Display poster</option><option value="glyph">Character sheet</option></select></label>
+          <label for="studio-specimen-face">FONT FACE <select id="studio-specimen-face"><option value="Regular">Regular</option><option value="Light">Light</option><option value="Bold">Bold</option><option value="Italic">Italic</option></select></label>
+          <label for="studio-specimen-size">TYPE SIZE <input id="studio-specimen-size" type="number" min="12" max="92" value="30" step="1"></label>
+        </div>
+        <label for="studio-specimen-text">TEXT TO PROOF</label>
+        <textarea id="studio-specimen-text" rows="4" maxlength="1800" spellcheck="false" aria-describedby="studio-specimen-help"></textarea>
+        <div class="studio-button-row"><button id="studio-specimen-render" type="button" aria-label="Refresh type specimen using compiled font">Refresh compiled-font proof</button><button id="studio-specimen-reset" type="button" aria-label="Restore standard type specimen text">Restore sample text</button><span id="studio-specimen-status" role="status" aria-live="polite" aria-atomic="true">Select a sample and refresh to proof its font.</span></div>
+        <canvas id="studio-specimen-canvas" width="740" height="920" role="img" aria-label="Typeset specimen preview with generated font" aria-describedby="studio-specimen-status"></canvas>
+        <p id="studio-specimen-coverage" class="panel-hint"></p>
+      </div>
+    </details>
+    <section class="studio-metrics" aria-label="Font metrics and kerning">
+      <div class="studio-metrics-row">
+        <label for="studio-spacing">GLOBAL LETTER SPACING <input id="studio-spacing" type="number" min="-250" max="350" step="10" value="0" title="Font units added to each glyph's advance width"></label>
+        <label for="studio-advance">THIS GLYPH’S ADVANCE <input id="studio-advance" type="number" min="320" max="1200" step="10" value="780" title="Glyph width in 1000-unit font space, before global spacing"></label>
+        <button type="button" id="studio-reset-advance" title="Reset the selected glyph’s advance to 780 font units">Reset width</button>
+      </div>
+      <div class="studio-metrics-row">
+        <label for="studio-kern-pair">KERNING PAIR <input id="studio-kern-pair" maxlength="2" value="AV" spellcheck="false" aria-label="Two characters to kern, for example AV"></label>
+        <label for="studio-kern-value">PAIR ADJUSTMENT <input id="studio-kern-value" type="number" min="-400" max="400" step="5" value="0" title="Negative values pull letters closer"></label>
+        <button type="button" id="studio-kern-save">Set kerning</button>
+        <button type="button" id="studio-kern-clear" aria-label="Remove pair kerning adjustment">Remove pair</button>
+        <label for="studio-kern-list">SAVED PAIRS <select id="studio-kern-list"><option value="">Select a pair…</option></select></label>
+      </div>
+      <p class="panel-hint">Metrics use font units (1000 per em). Negative kerning pulls a pair closer. Explicit kerning pairs are emitted as both legacy kern and OpenType GPOS.</p>
+      <details id="studio-advanced-spacing"><summary>ADVANCED SPACING &amp; KERNING</summary>
+        <p class="panel-hint">Set ink sidebearings non-destructively. Right bearing adjusts the advance width; left bearing shifts the exported outline. Proof in the word workspace.</p>
+        <div class="studio-metrics-row">
+          <label for="studio-bearing-left">LEFT SIDEBEARING <input id="studio-bearing-left" type="number" min="-300" max="450" step="5" value="0"></label>
+          <button type="button" id="studio-bearing-left-set">Set left bearing</button>
+          <label for="studio-bearing-right">RIGHT SIDEBEARING <input id="studio-bearing-right" type="number" min="-300" max="450" step="5" value="0"></label>
+          <button type="button" id="studio-bearing-right-set">Set right bearing</button>
+          <button type="button" id="studio-bearing-reset">Reset bearings</button>
+        </div>
+        <p class="panel-hint">Use reusable left/right glyph classes for optical kerning. An explicit pair (above) overrides its class value. Exports include GPOS pair positioning and a compatible legacy kern table.</p>
+        <div class="studio-metrics-row">
+          <label for="studio-class-left-name">LEFT CLASS NAME <input id="studio-class-left-name" maxlength="24" value="UpperRound" spellcheck="false"></label>
+          <label for="studio-class-left-chars">LEFT MEMBERS <input id="studio-class-left-chars" maxlength="48" value="OQC" spellcheck="false"></label>
+          <label for="studio-class-right-name">RIGHT CLASS NAME <input id="studio-class-right-name" maxlength="24" value="Diagonals" spellcheck="false"></label>
+          <label for="studio-class-right-chars">RIGHT MEMBERS <input id="studio-class-right-chars" maxlength="48" value="AVW" spellcheck="false"></label>
+          <label for="studio-class-kern-value">CLASS ADJUSTMENT <input id="studio-class-kern-value" type="number" min="-400" max="400" step="5" value="-35"></label>
+          <button type="button" id="studio-class-save">Save classes &amp; kerning</button>
+        </div>
+        <div class="studio-metrics-row"><label for="studio-class-list">SAVED CLASS PAIRS <select id="studio-class-list"><option value="">Select class pair…</option></select></label><button type="button" id="studio-class-remove">Remove selected class pair</button></div>
+      </details>
+    </section>
+    <details class="studio-variation-editor" open>
+      <summary>FONT VARIATIONS <span class="studio-word-tag">STATIC + VARIABLE</span></summary>
+      <div class="studio-variation-controls" role="group" aria-label="Font face design and export">
+        <label for="studio-variant-select">FACE TO EDIT
+          <select id="studio-variant-select" aria-describedby="studio-variant-help">
+            <option value="Regular">Regular</option><option value="Light">Light</option><option value="Bold">Bold</option><option value="Italic">Italic</option>
+          </select>
+        </label>
+        <button id="studio-variant-create" type="button" aria-describedby="studio-variant-help">Generate from Regular</button>
+        <button id="studio-variant-delete" type="button" aria-label="Remove face from this font family" aria-describedby="studio-variant-help">Remove face</button>
+        <span id="studio-variant-state" class="studio-variation-state" role="status" aria-live="polite" aria-atomic="true">Regular face</span>
+      </div>
+      <p class="panel-hint" id="studio-variant-help">Generate Light, Bold, or Italic from Regular, then refine each master. Export complete family creates individual static TTF files. <strong>Export variable font</strong> requires a Bold master (optionally Light) and matching contour/node topology across the weights; it exports a real, interpolating OpenType wght axis. Italic stays a separate static face. Ligatures and alternates are shared across masters.</p>
+      <section class="studio-master-workflow" aria-labelledby="studio-master-title">
+        <h3 id="studio-master-title">VARIABLE FONT WORKSPACE</h3>
+        <p id="studio-master-help" class="panel-hint">Review master compatibility before exporting, select an affected character to repair it, and preview a weight between the editable masters. This previews source outlines; final export independently verifies the generated TrueType masters.</p>
+        <div class="studio-button-row studio-master-actions" role="group" aria-label="Variable font master actions">
+          <button id="studio-master-check" type="button" aria-describedby="studio-master-help" aria-label="Check variable-font master compatibility">Check master compatibility</button>
+          <button id="studio-master-next" type="button" disabled aria-label="Next incompatible glyph in variable font masters">Next incompatible glyph</button>
+          <button id="studio-master-copy" type="button" disabled aria-label="Use Regular outline in selected master (Light or Bold)" aria-describedby="studio-master-repair-help">Use Regular outline in selected master</button>
+        </div>
+        <p id="studio-master-repair-help" class="panel-hint">Use Regular outline replaces the current glyph in the selected Light or Bold master with the same contour structure. The edit is undoable; reshape its anchors afterward.</p>
+        <p id="studio-master-summary" role="status" aria-live="polite" aria-atomic="true" class="studio-master-summary">Create a Bold master, then check compatibility.</p>
+        <div class="studio-master-slider">
+          <label for="studio-master-weight">PREVIEW WEIGHT (wght)</label>
+          <input type="range" id="studio-master-weight" min="400" max="700" step="10" value="400" aria-describedby="studio-master-weight-help" aria-valuetext="400 weight units">
+          <output for="studio-master-weight" id="studio-master-weight-value">400</output>
+        </div>
+        <p class="panel-hint" id="studio-master-weight-help">Move the slider to preview interpolated outlines. Without a Light master, weights begin at 400. Preview unavailable when selected glyph masters have incompatible contours or anchors.</p>
+        <div class="studio-master-preview-grid" role="group" aria-label="Master and interpolated glyph comparison">
+          <div class="studio-master-preview-card"><span class="studio-master-preview-label">Regular · 400</span><svg id="studio-master-regular" viewBox="0 0 760 960" role="img" aria-label="Regular master outline preview" aria-describedby="studio-master-preview-message"></svg></div>
+          <div class="studio-master-preview-card"><span id="studio-master-middle-label" class="studio-master-preview-label">Interpolated · 400</span><svg id="studio-master-interpolated" viewBox="0 0 760 960" role="img" aria-label="Interpolated master outline preview" aria-describedby="studio-master-preview-message"></svg></div>
+          <div class="studio-master-preview-card"><span class="studio-master-preview-label">Bold · 700</span><svg id="studio-master-bold" viewBox="0 0 760 960" role="img" aria-label="Bold master outline preview" aria-describedby="studio-master-preview-message"></svg></div>
+        </div>
+        <p id="studio-master-preview-message" class="panel-hint" role="status" aria-live="polite" aria-atomic="true"></p>
+        <section class="studio-overlay-panel" aria-labelledby="studio-overlay-title">
+          <h4 id="studio-overlay-title">VISUAL MASTER OVERLAY</h4>
+          <p class="panel-hint" id="studio-overlay-help">Compare the selected glyph’s Regular and comparison master at the same scale. Colored outlines and numbered anchor pairs reveal structural differences. Lines connect corresponding anchors by contour order, not by optical similarity.</p>
+          <div class="studio-button-row studio-overlay-controls" role="group" aria-label="Master overlay controls">
+            <label for="studio-overlay-face">COMPARE WITH <select id="studio-overlay-face" aria-describedby="studio-overlay-help studio-overlay-summary"><option value="Bold">Bold · 700</option><option value="Light">Light · 300</option></select></label>
+            <label class="studio-check"><input type="checkbox" id="studio-overlay-nodes" checked> Show anchors</label>
+            <label class="studio-check"><input type="checkbox" id="studio-overlay-links" checked> Show matching-node links</label>
+          </div>
+          <svg id="studio-master-overlay" viewBox="0 0 760 960" role="img" aria-label="Overlaid Regular and Bold glyph master outlines" aria-describedby="studio-overlay-help studio-overlay-summary"></svg>
+          <p id="studio-overlay-summary" class="panel-hint" role="status" aria-live="polite"></p>
+          <div class="studio-overlay-legend" aria-hidden="true"><span class="studio-legend-regular">Regular</span><span class="studio-legend-other">Comparison master</span><span class="studio-legend-pair">Anchor correspondence</span></div>
+        </section>
+
+        <h4 id="studio-master-issues-title">GLYPHS TO REVIEW</h4>
+        <ul id="studio-master-issues" class="studio-master-issues" aria-labelledby="studio-master-issues-title"><li>Run compatibility review to find glyph-level differences.</li></ul>
+      </section>
+    </details>
+    <details class="studio-feature-editor" open>
+      <summary>LIGATURES &amp; STYLISTIC ALTERNATES <span class="studio-word-tag">OPEN TYPE</span></summary>
+      <div class="studio-feature-body">
+        <p class="panel-hint">Create connected letter combinations (fi, fl, ffi) or alternate designs for a letter. Select a design to edit it with the same Bézier tools. Exports include OpenType GSUB liga, salt, and ss01–ss03 features.</p>
+        <div class="studio-feature-rows">
+          <fieldset><legend>CONNECTED LETTERS · LIGATURES</legend>
+            <div class="studio-feature-line">
+              <label for="studio-liga-sequence">LETTERS (2–3)<input id="studio-liga-sequence" maxlength="3" value="fi" spellcheck="false" autocomplete="off"></label>
+              <button id="studio-liga-create" type="button">＋ Create / edit</button>
+              <label for="studio-liga-list">SAVED LIGATURES<select id="studio-liga-list"><option value="">No ligatures</option></select></label>
+              <button id="studio-liga-edit" type="button">Edit selected</button><button id="studio-liga-remove" type="button" aria-label="Delete selected ligature">Delete</button>
+              <label for="studio-liga-advance">ADVANCE WIDTH<input id="studio-liga-advance" type="number" min="320" max="2400" value="1300" step="10" title="Horizontal width of the selected ligature in font units"></label>
+            </div>
+          </fieldset>
+          <fieldset><legend>STYLISTIC ALTERNATES · UP TO 3 PER LETTER</legend>
+            <div class="studio-feature-line">
+              <label for="studio-alt-char">BASE CHARACTER<select id="studio-alt-char"></select></label>
+              <button id="studio-alt-create" type="button">＋ New variation</button>
+              <label for="studio-alt-list">SAVED ALTERNATES<select id="studio-alt-list"><option value="">No alternates</option></select></label>
+              <button id="studio-alt-edit" type="button">Edit selected</button><button id="studio-alt-remove" type="button" aria-label="Delete selected alternate">Delete</button>
+            </div>
+          </fieldset>
+        </div>
+        <div class="studio-feature-active"><strong id="studio-feature-target">Editing standard glyph A</strong><button id="studio-feature-base" type="button">← Back to normal letter</button></div>
+        <div class="studio-feature-proof-settings"><label for="studio-feature-proof-text">TYPE A PROOF<input id="studio-feature-proof-text" type="text" maxlength="40" value="office AVA fi fl" spellcheck="false"></label>
+          <label class="studio-check"><input type="checkbox" id="studio-feature-preview-liga" checked> Use ligatures</label>
+          <label for="studio-feature-preview-alt">ALTERNATE PREVIEW<select id="studio-feature-preview-alt"><option value="0">Standard letters</option><option value="1">Style set 01</option><option value="2">Style set 02</option><option value="3">Style set 03</option></select></label>
+        </div>
+        <canvas id="studio-feature-proof" aria-describedby="studio-feature-target" width="740" height="165" aria-label="Preview of text using ligature and alternate vector outlines" role="img"></canvas>
+        <p class="panel-hint">Ligatures normally apply automatically in OpenType-aware apps. Stylistic alternates can be selected through salt / ss01 / ss02 / ss03 font features in applications that support them. The regular glyph stays untouched.</p>
+      </div>
+    </details>
+    <section class="studio-transform" aria-label="Vector transform and guides">
+      <div class="studio-transform-heading"><h3>SHAPE &amp; PRECISION TOOLS</h3><p class="panel-hint">Transforms edit the actual Bézier geometry, so changes appear in your exported font. Every action supports glyph undo.</p></div>
+      <div class="studio-transform-controls">
+        <label for="studio-width-scale">WIDTH % <input id="studio-width-scale" type="number" min="50" max="160" value="100" step="5"></label>
+        <label for="studio-height-scale">HEIGHT % <input id="studio-height-scale" type="number" min="50" max="160" value="100" step="5"></label>
+        <label for="studio-slant">SLANT ° <input id="studio-slant" type="number" min="-25" max="25" value="0" step="1" title="Positive values lean the top of the letter to the right"></label>
+        <label for="studio-rotation">ROTATE ° <input id="studio-rotation" type="number" min="-45" max="45" value="0" step="1"></label>
+        <label for="studio-transform-scope">APPLY TO <select id="studio-transform-scope"><option value="all">Whole glyph</option><option value="contour">Selected contour</option></select></label>
+        <button type="button" id="studio-transform-apply" class="btn-ink">Apply transform</button>
+      </div>
+      <div class="studio-transform-actions" role="group" aria-label="Contour actions">
+        <button type="button" id="studio-center">Center glyph</button>
+        <button type="button" id="studio-duplicate-contour" title="Duplicate the selected contour with a small offset">Duplicate contour</button>
+        <button type="button" id="studio-align-cap" title="Move selected contour to the cap-height guide">Align to cap</button>
+        <button type="button" id="studio-align-base" title="Move selected contour to the baseline">Align to baseline</button>
+      </div>
+      <div class="studio-grid-controls"><label class="studio-check"><input id="studio-grid-visible" type="checkbox" checked> Show grid</label><label class="studio-check"><input id="studio-grid-snap" type="checkbox"> Snap anchors to grid</label><label for="studio-grid-step">GRID <select id="studio-grid-step"><option value="10">10 units</option><option value="20" selected>20 units</option><option value="40">40 units</option></select></label></div>
+    </section>
+    <details class="studio-outline-effects">
+      <summary>OUTLINE BUILDER · WEIGHT &amp; BOOLEAN SHAPES</summary>
+      <div class="studio-outline-body">
+        <p class="panel-hint">Build weight directly into the editable letter outlines, or combine two contours. Effects are applied permanently to the chosen glyph and can be undone with Undo glyph. Save font to include them in the exported TTF.</p>
+        <div class="studio-outline-row" role="group" aria-label="Outline weight controls">
+          <label for="studio-weight">WEIGHT CHANGE <input id="studio-weight" type="number" min="-60" max="60" step="5" value="20" title="Positive numbers make strokes heavier; negative numbers make them lighter"></label>
+          <label for="studio-weight-scope">APPLY WEIGHT TO <select id="studio-weight-scope"><option value="all">Whole glyph (including holes)</option><option value="contour">Selected contour</option></select></label>
+          <button type="button" class="btn-ink" id="studio-weight-apply" aria-label="Apply stroke weight to selected glyph">Apply weight</button>
+        </div>
+        <p class="panel-hint">Small adjustments work best (try +10 to +30). Positive values grow outside edges and shrink counters (holes). Negative values thin the glyph. Complex/self-overlapping contours may need manual cleanup.</p>
+        <div class="studio-outline-row" role="group" aria-label="Boolean contour controls">
+          <label for="studio-boolean-a">CONTOUR A <select id="studio-boolean-a" aria-label="First contour"></select></label>
+          <label for="studio-boolean-b">CONTOUR B <select id="studio-boolean-b" aria-label="Second contour"></select></label>
+          <button type="button" id="studio-boolean-union" title="Combine both contour silhouettes">Combine</button>
+          <button type="button" id="studio-boolean-subtract" title="Remove the area of contour B from contour A">Subtract B from A</button>
+          <button type="button" id="studio-boolean-intersect" title="Keep only the overlapping area">Intersect</button>
+        </div>
+        <p class="panel-hint">Use the Contour A/B selectors to choose two shapes. Combine merges them; Subtract cuts B out of A; Intersect keeps only their overlap. Other contours stay unchanged. Boolean results remain editable Bézier outlines.</p>
+      </div>
+    </details>
+    <section class="studio-word-workspace" aria-label="Multi-glyph lettering workspace">
+      <div class="studio-word-heading"><div><h3>WORD WORKSPACE <span class="studio-word-tag">LIVE VECTOR PROOF</span></h3><p class="panel-hint">Click a letter to edit its curves in the editor below. Drag the gold spacing handles between letters to adjust kerning in real time.</p></div>
+        <label for="studio-word">LETTERS TO DESIGN <input id="studio-word" type="text" value="AVATAR" maxlength="12" spellcheck="false" autocomplete="off" aria-describedby="studio-word-help"></label>
+      </div>
+      <div id="studio-word-viewport" class="studio-word-viewport"><svg id="studio-word-canvas" aria-keyshortcuts="ArrowLeft ArrowRight ArrowUp ArrowDown" aria-describedby="studio-word-help" viewBox="0 0 5000 960" role="group" aria-label="Clickable letter outlines with draggable kerning handles" tabindex="0"></svg></div>
+      <div class="studio-word-foot"><span id="studio-word-help">Click a letter to select it; drag a gold handle to change kerning. For keyboard use: focus the word workspace, use Left/Right to choose a letter, and Up/Down to adjust its preceding kerning by five units. Horizontal scroll is available for longer words.</span><output id="studio-word-selection" aria-live="polite" aria-atomic="true">Selected A</output></div>
+    </section>
+    <div class="studio-workspace">
+      <div class="studio-vector-panel">
+        <div class="vector-toolbar" role="toolbar" aria-label="Vector path editing tools">
+          <button type="button" id="studio-draw" aria-pressed="false" title="Draw a new contour by clicking three or more points, then Finish" aria-label="Draw new editable glyph contour">✎ Draw path</button>
+          <button type="button" id="studio-finish" disabled title="Finish and close the new contour">Close path</button>
+          <button type="button" id="studio-ellipse" title="Add an editable ellipse contour">◯ Ellipse</button>
+          <button type="button" id="studio-rectangle" title="Add an editable rectangle contour">▢ Rectangle</button>
+          <button type="button" id="studio-flip-x" title="Mirror the selected contour horizontally">⇆ Flip H</button>
+          <button type="button" id="studio-flip-y" title="Mirror the selected contour vertically">⇅ Flip V</button>
+          <button type="button" id="studio-import-svg" title="Import SVG path outlines into the selected character">↥ Import SVG</button>
+          <input id="studio-svg-file" type="file" accept=".svg,image/svg+xml" hidden aria-label="Choose an SVG outline file to import into the selected glyph">
+          <button type="button" id="studio-insert" title="Add an anchor halfway along the selected segment" aria-label="Insert glyph anchor point">＋ Point</button>
+          <button type="button" id="studio-smooth" title="Make selected anchor smooth">Smooth</button>
+          <button type="button" id="studio-corner" title="Make selected anchor a sharp corner">Corner</button>
+          <button type="button" id="studio-delete" title="Delete selected anchor or its contour" aria-label="Delete selected glyph anchor point">− Point</button>
+          <button type="button" id="studio-reverse" title="Reverse selected contour, useful for holes">↻ Reverse</button>
+        </div>
+        <svg tabindex="0" id="studio-vector-canvas" class="studio-vector-canvas" aria-keyshortcuts="Enter ArrowLeft ArrowRight ArrowUp ArrowDown" aria-describedby="studio-vector-help studio-anchor-description" viewBox="0 0 760 960" preserveAspectRatio="xMidYMid meet" role="group" aria-roledescription="vector outline editor" aria-label="Editable vector glyph: drag circular anchors and Bézier control handles; click path to select a contour"></svg>
+<p class="panel-hint" id="studio-vector-help">Drag round anchors or square Bézier handles. Shift-drag mirrors the other handle. Use Shape &amp; Precision Tools for scale, slant, rotate, alignment, and grid snapping. Focus the editor and press Enter to select the first anchor, then use arrow keys to nudge it (Shift = 10 units). Imported SVG outlines replace the current glyph.</p>
+        <p id="studio-anchor-description" class="sr-only" role="status" aria-live="polite" aria-atomic="true">Select an anchor in the vector editor, then use arrow keys to reposition it.</p>
+        <div class="studio-button-row"><button type="button" id="studio-clear" aria-label="Clear letter outlines of selected glyph">Clear letter</button><button type="button" id="studio-autofill">Trace smooth template</button><button type="button" id="studio-undo" title="Undo last glyph change" aria-label="Undo last glyph change">↶ Undo glyph</button><button type="button" id="studio-redo" title="Redo last glyph change" aria-label="Redo last glyph change">↷ Redo glyph</button></div>
+      </div>
+      <div class="studio-preview-panel"><h3>VECTOR PREVIEW</h3>
+        <div class="studio-copy-line"><label for="studio-copy-from">COPY OUTLINE FROM <select id="studio-copy-from"></select></label><button type="button" id="studio-copy-glyph" title="Copy another character's contours to this glyph">Copy to glyph</button></div><canvas id="studio-glyph-preview" width="320" height="260" aria-label="Anti-aliased Bézier glyph and sample text preview" role="img"></canvas><label for="studio-sample">SAMPLE TEXT</label><textarea id="studio-sample" rows="2">SKOSH PRESS 2026
+Aa Bb 0123!?</textarea><p class="panel-hint">Curves export as TrueType quadratic outlines. Letter shapes are editable after saving. For openings in O or B, use Reverse on the inner contour. SVG import accepts closed paths and common basic shapes (not SVG arcs or linked elements).</p></div>
+    </div>
+    <div class="studio-button-row"><button type="button" class="btn-ink" id="studio-save" aria-describedby="studio-variant-help">Save font family to project</button><button type="button" id="studio-apply">Apply to selected text frame</button><button type="button" id="studio-export" aria-describedby="studio-variant-help">Export selected TTF…</button><button type="button" id="studio-export-family" aria-label="Export complete installable font family">Export complete family (ZIP)…</button><button type="button" id="studio-export-variable" aria-label="Export variable TrueType font">Export variable font (TTF)…</button><button type="button" id="studio-import-editable">Import editable font…</button><button type="button" id="studio-export-editable">Export editable (.skoshfont)…</button><button type="button" id="studio-export-ufo" aria-label="Export editable UFO3 font archive">Export UFO3 (.zip)…</button></div>
+    <p class="panel-hint" id="studio-status" role="status" aria-live="polite" aria-atomic="true"></p>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true" hidden></div>
+</body>
+</html>

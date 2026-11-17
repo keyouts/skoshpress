@@ -1,0 +1,8 @@
+﻿"record_type","record_id","subject","event_type","date_raw","place_raw","detail","source_count"
+"individual","'@I1@","Clara Bennett","Birth","12 MAR 1882","Lancaster, Pennsylvania","","1"
+"individual","'@I1@","Clara Bennett","Death","15 OCT 1954","","","0"
+"individual","'@I2@","Daniel Bennett","Birth","6 APR 1879","","","0"
+"individual","'@I2@","Daniel Bennett","Death","21 MAY 1948","","","0"
+"individual","'@I3@","Ruth Bennett","Birth","23 JUL 1910","","","0"
+"individual","'@I3@","Ruth Bennett","Death","5 DEC 2003","","","0"
+"family","'@F1@","Family of Daniel Bennett & Clara Bennett","Marriage","10 JUN 1904","Lancaster, Pennsylvania","","1"
